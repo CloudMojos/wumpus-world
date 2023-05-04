@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+/* Reset */
+* {
+    padding: 0;
+    border: 0;
+    margin: 0;
+    box-sizing: border-box;
+    /* border: 1px solid red; */
+}
+/* Reset */
+
+/* Body and :root */
+:root {
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    background-color: #c9c9c9;
+}
+/* Body and :root */
+
+/* Header */
+header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 1.5rem 1rem 1.5rem;
+    background-color: whitesmoke;
+
+    margin-bottom: 10vh;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.281);
+}
+
+header .logo {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.links {
+    list-style: none;
+}
+
+header .links {
+    display: flex;
+    align-items: center;
+}
+
+header .links li {
+    font-size: 1rem;
+    padding: 1rem;
+    margin-left: 1rem;
+    border-radius: 5px;
+}
+
+header .links li:hover {
+    background-color: #00000050;
+}
+/* Header */
+
+/* Board */
+#board {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+
+    background-color: whitesmoke;
+    padding: 1rem;
+    border-radius: 15px;
+}
+/* Board */
+
+/* Cells */
+.cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Added to stack the <p> elements vertically */
+    flex-wrap: wrap;
+
+    width: clamp(60px, 7.5vw, 200px);
+    height: clamp(60px, 7.5vw, 200px);
+    word-break: break-all;
+    font-size: 1.5rem;
+}
+
+.cell:hover {
+    cursor: pointer;
+}
+
+.all-sides {
+    border: 8px solid rgb(36, 36, 36);
+}
+
+.right {
+    border-right: 8px solid rgb(36, 36, 36);
+}
+
+.left {
+    border-left: 8px solid rgb(36, 36, 36);
+}
+
+.top {
+    border-top: 8px solid rgb(36, 36, 36);
+}
+
+.bottom {
+    border-bottom: 8px solid rgb(36, 36, 36);
+}
+/* Cells */
