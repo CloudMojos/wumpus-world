@@ -1,4 +1,5 @@
 import './style.css'
+import { Agent } from './agent'
 import { WumpusWorld } from './world'
 
 // Wumpus World
@@ -11,6 +12,7 @@ world.addWumpus(1, 0)
 world.addPit(1, 2)
 world.addPit(3, 2)
 world.addPit(0, 3)
-world.addAgent(1, 1)
+world.addAgent()
 
-// consoleInnerHTML(cells[2])
+const agent = new Agent(world)
+agent.move('u')

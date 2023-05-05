@@ -1,6 +1,7 @@
 class WumpusWorld {
     constructor(cells) {
         this.cells = cells
+        this.agentStartingLocation = []
     }
 
     // Add wumpus and stench around it
@@ -78,6 +79,23 @@ class WumpusWorld {
 
     }
 
+    addAgent(posY = 3, posX = 0) {
+        this.cells.forEach(cell => {
+            if (parseInt(cell.dataset.row) === posY && parseInt(cell.dataset.column) === posX) {
+                cell.innerText += '🧝'
+            }
+        })
+        this.agentStartingLocation = [posY, posX]
+    }
+
+    removeAgent(posY, posX) {
+        this.cells.forEach(cell => {
+            if (parseInt(cell.dataset.row) === posY && parseInt(cell.dataset.column) === posX) {
+                cell.innerText = cell.innerText.replace(/🧝/g, '')
+            }
+        })
+    }
+
     containsFart(cell) {
         return cell.innerText.includes('💩')
     }
@@ -85,24 +103,6 @@ class WumpusWorld {
     containsBreeze(cell) {
         return cell.innerText.includes('🍃')
     }
-
-    addAgent(posY = 3, posX = 0) {
-        this.cells.forEach(cell => {
-            if (parseInt(cell.dataset.row) === posY && parseInt(cell.dataset.column) === posX) {
-                cell.innerText += '🧝'
-            }
-        })
-    }
-    
-    consoleInnerHTML(cell) {
-        console.log('Hello')
-        console.log(cell.innerText)
-        let str = cell.innerText
-        str.split('').forEach(c => {
-            console.log(c)
-        })
-    }
-    
 }
 
 export { WumpusWorld }
