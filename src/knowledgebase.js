@@ -7,7 +7,14 @@ class KnowledgeBase {
 
     update(cell, world) {
         this.unvisitedCells =  this.removeUnvisited(cell)
-        // this.setDangerLevel() 
+        this.setCellScore(cell, world)
+    }
+
+    setCellScore(cell, world) {
+        // Get adjacent of cell.
+        // Iterate over adjacent 
+        // If already visited, skip
+        // Make cellsArray
     }
 
     removeUnvisited(visited) {

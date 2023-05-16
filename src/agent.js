@@ -35,7 +35,7 @@ class Agent {
     }
 
     updateKB() {
-        this.kb.update(this.currentCell, world)
+        this.kb.update(this.currentCell, this.world)
     }
 
     move(direction) {
