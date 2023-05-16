@@ -5,7 +5,7 @@ class WumpusWorld {
     }
 
     // Add wumpus and stench around it
-    addWumpus(posY, posX) {
+    addWumpus(posX, posY) {
         this.cells.forEach(cell => {
             //console.log(parseInt(cell.dataset.row), cell.dataset.column)
             // Add the wumpus
@@ -42,7 +42,7 @@ class WumpusWorld {
     }
   
     // Add pit and breeze around it
-    addPit(posY, posX) {
+    addPit(posX, posY) {
         this.cells.forEach(cell => {
             //console.log(parseInt(cell.dataset.row), cell.dataset.column)
             // Add the wumpus
@@ -79,16 +79,16 @@ class WumpusWorld {
 
     }
 
-    addAgent(posY = 3, posX = 0) {
+    addAgent(posX = 0, posY = 3) {
         this.cells.forEach(cell => {
             if (parseInt(cell.dataset.row) === posY && parseInt(cell.dataset.column) === posX) {
                 cell.innerText += '🧝'
             }
         })
-        this.agentStartingLocation = [posY, posX]
+        this.agentStartingLocation = [posX, posY]
     }
 
-    removeAgent(posY, posX) {
+    removeAgent(posX, posY) {
         this.cells.forEach(cell => {
             if (parseInt(cell.dataset.row) === posY && parseInt(cell.dataset.column) === posX) {
                 cell.innerText = cell.innerText.replace(/🧝/g, '')
@@ -102,6 +102,58 @@ class WumpusWorld {
 
     containsBreeze(cell) {
         return cell.innerText.includes('🍃')
+    }
+    // Coord to Cell
+    getCell(coord) {
+        // console.log(coord)
+        let currentCell
+        this.cells.forEach(cell => {
+            if (parseInt(cell.dataset.column) === coord[0] && parseInt(cell.dataset.row) === coord[1]) {
+                currentCell = cell
+            }
+        })
+        return currentCell
+    }
+    // // Cell to Coord
+    getLocation(cell) {
+        let coord = []
+        coord.push(parseInt(cell.dataset.column))
+        coord.push(parseInt(cell.dataset.row))
+        return coord
+    }
+
+    getPercept(cell) {
+        let percept = {
+            breeze: false,
+            fart: false
+        }
+        if (this.containsFart(cell)) {
+            percept.fart = true
+        }
+        if (this.containsBreeze(cell)) {
+            percept.breeze = true
+        }
+        return percept
+    }
+
+    getAdjacentCells(coord) {
+        let adjacentCells = []
+        this.cells.forEach(cell => {
+            if (parseInt(cell.dataset.column) === coord[0] && parseInt(cell.dataset.row) === coord[1] - 1) {
+                adjacentCells.push(cell)
+            }
+            else if (parseInt(cell.dataset.column) === coord[0] && parseInt(cell.dataset.row) === coord[1] + 1) {
+                adjacentCells.push(cell)
+            }
+            else if (parseInt(cell.dataset.column) === coord[0] - 1 && parseInt(cell.dataset.row) === coord[1]) {
+                adjacentCells.push(cell)
+            }
+            else if (parseInt(cell.dataset.column) === coord[0] + 1 && parseInt(cell.dataset.row) === coord[1]) {
+                adjacentCells.push(cell)
+            }
+        })
+        // console.log(adjacentCells)
+        return adjacentCells
     }
 }
 

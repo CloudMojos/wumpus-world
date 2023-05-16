@@ -82,10 +82,10 @@ header .links li:hover {
     flex-direction: column; /* Added to stack the <p> elements vertically */
     flex-wrap: wrap;
 
-    width: clamp(60px, 7.5vw, 200px);
-    height: clamp(60px, 7.5vw, 200px);
+    width: clamp(60px, 7.7vw, 200px);
+    height: clamp(60px, 7.7vw, 200px);
     word-break: break-all;
-    font-size: 1.7rem;
+    font-size: 2.5vw;
 }
 
 .cell:hover {
@@ -93,22 +93,38 @@ header .links li:hover {
 }
 
 .all-sides {
-    border: 8px solid rgb(36, 36, 36);
+    border: 4px solid rgb(36, 36, 36);
 }
 
 .right {
     border-right: 8px solid rgb(36, 36, 36);
 }
 
+.right-1 {
+    border-right: 4px solid rgb(36, 36, 36);
+}
+
 .left {
     border-left: 8px solid rgb(36, 36, 36);
+}
+
+.left-1 {
+    border-left: 4px solid rgb(36, 36, 36);
 }
 
 .top {
     border-top: 8px solid rgb(36, 36, 36);
 }
 
+.top-1 {
+    border-top: 4px solid rgb(36, 36, 36);
+}
+
 .bottom {
     border-bottom: 8px solid rgb(36, 36, 36);
+}
+
+.bottom-1 {
+    border-bottom: 4px solid rgb(36, 36, 36);
 }
 /* Cells */
