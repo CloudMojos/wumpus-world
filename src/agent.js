@@ -3,41 +3,39 @@ import { KnowledgeBase } from './knowledgebase'
 class Agent {
     constructor(world) {
         this.world = world
-        this.kb = new KnowledgeBase()
-        this.location = world.agentStartingLocation
+        this.kb = new KnowledgeBase(this.world.cells)
+        this.location = this.world.agentStartingLocation
         this.currentCell = this.world.getCell(this.location)
-        this.adjacentCells = this.world.getAdjacentCells(this.location)
-        this.percept = this.world.getPercept(this.currentCell)
         this.updateKB()
     }
     solve() {
-        // // Returns divs, not the coords only
-        // let safeCells = this.getSafeCells(this.adjacentCells)
-        // while (!this.world.goalReached || this.world.agentKilled) {
-        //     if (this.kb.safeCells.length > 0) {
-        //         // move to the first safe cell
-        //         let firstSafeCell = safeCells[0]
-        //         this.moveToCoord(parseInt(firstSafeCell.dataset.column), parseInt(firstSafeCell.dataset.row))
-        //         this.updateKB()
-        //     }
-        //     else {
-        //         if (this.kb.wumpusNearby) {
-        //             this.shoot(this.kb.wumpusLocation)
-        //         } else {
-        //             // move to the first least dangerous unsafe cell
-        //         }
-        //     }
-        // }
+        // Returns divs, not the coords only
+        let safeCells = this.getSafeCells()
+        while (!this.world.goalReached || this.world.agentKilled) {
+            if (this.kb.safeCells.length > 0) {
+                // move to the first safe cell
+                let firstSafeCell = safeCells[0]
+                this.moveToCoord(parseInt(firstSafeCell.dataset.column), parseInt(firstSafeCell.dataset.row))
+                this.updateKB()
+            }
+            else {
+                if (this.kb.wumpusNearby) {
+                    this.shoot(this.kb.wumpusLocation)
+                } else {
+                    // move to the first least dangerous unsafe cell
+                }
+            }
+        }
     }
 
     // Returns div cells
     // I used propositional logic to determine if the cell is safe or not
-    getSafeCells(adjacentCells) {
-        return this.kb.safeCells
+    getSafeCells() {
+        // return this.kb.safeCells
     }
 
     updateKB() {
-        this.kb.update(this.currentCell, this.adjacentCells, this.percept)
+        this.kb.update(this.currentCell, world)
     }
 
     move(direction) {

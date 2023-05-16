@@ -122,20 +122,6 @@ class WumpusWorld {
         return coord
     }
 
-    getPercept(cell) {
-        let percept = {
-            breeze: false,
-            fart: false
-        }
-        if (this.containsFart(cell)) {
-            percept.fart = true
-        }
-        if (this.containsBreeze(cell)) {
-            percept.breeze = true
-        }
-        return percept
-    }
-
     getAdjacentCells(coord) {
         let adjacentCells = []
         this.cells.forEach(cell => {
