@@ -1,31 +1,40 @@
+class Cell {
+    constructor(cell) {
+        this.divCell = cell
+        this.safeCells = []
+    }
+}
+
 class KnowledgeBase {
     constructor(cells) {
         // Need to make it an array cuz NodeList soyboy af
         this.cellsArray = Array.from(cells) // This will contain score property
-        this.unvisitedCells = this.cellsArray
+        this.unvisited = this.cellsArray
+        this.visited = []
+        this.safe = []
+        this.possiblePit = []
+        this.possibleWumpus = []
     }
 
-    update(cell, world) {
-        this.unvisitedCells =  this.removeUnvisited(cell)
-        this.setCellScore(cell, world)
+    update(cell, adjacentCells, breeze, fart) {
+        // Visit the cell
+        this.unvisited = this.removeUnvisited(cell)
+        // console.log(this.unvisited)
+        // console.log(cell)
+        // Create a cell class from cell, add it to visited array
+        let newCell = new Cell(cell)
+        this.visited.push(newCell)
+        let newCellSafeCells = this.getSafeCells(adjacentCells, breeze, fart)
+        // From each of the adjacent cells, determine the safe cells
     }
 
-    setCellScore(cell, world) {
-        // Get adjacent of cell.
-        // Iterate over adjacent 
-        // If already visited, skip
-        // Make cellsArray
-    }
-
-    removeUnvisited(visited) {
-        let unvisited = []
-        this.unvisitedCells.forEach(cell => {
-            if (parseInt(visited.dataset.column) === parseInt(cell.dataset.column) && parseInt(visited.dataset.row) === parseInt(cell.dataset.row)) {
-                return
+    removeUnvisited(cell) {
+        return this.unvisited.filter(currentCell => {
+            if (parseInt(currentCell.dataset.column) === parseInt(cell.dataset.column) && parseInt(currentCell.dataset.row) === parseInt(cell.dataset.row)) {
+                return false
             }
-            unvisited.push(cell)
+            return true
         })
-        return unvisited
     }
 
     // // Add the cell as visited and update the safeCells
@@ -62,9 +71,10 @@ class KnowledgeBase {
     //     })
     // }
 
-    // isVisited(cell) {
-    //     return this.visitedCells.includes(cell)
-    // }
+    isVisited(cell) {
+        // return this.unvisitedCells.includes(cell)
+
+    }
 }
 
 export { KnowledgeBase }

@@ -15,11 +15,4 @@ world.addPit(3, 0)
 world.addAgent()
 
 const agent = new Agent(world)
-// console.log(agent.kb.cellsArray)
-
-agent.kb.cellsArray.forEach(cell => {
-    if (parseInt(cell.dataset.column) === 0) {
-        console.log(cell)
-    }
-})
 
